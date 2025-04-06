@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDJ Salon | Futuristic Hair Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+        .gradient-text { background: linear-gradient(45deg, #667eea, #8b5cf6); -webkit-background-clip: text; background-clip: text; }
+        .glass-effect { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .neon-glow { box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div id="threejs-bg" class="fixed inset-0 -z-50"></div>
+    <div id="p5-particles" class="fixed inset-0 -z-40"></div>
+
+    <nav x-data="{ open: false }" class="glass-effect fixed w-full top-0 backdrop-blur-lg border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_uwWgICKCgj.json" background="transparent" speed="0.8" style="width: 45px; height: 45px" loop autoplay></lottie-player>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">KDJ SALON</span>
+                </div>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="#hero" class="hover:text-indigo-300 transition-colors">Home</a>
+                    <a href="#services" class="hover:text-indigo-300 transition-colors">Services</a>
+                    <a href="#stylists" class="hover:text-indigo-300 transition-colors">Stylists</a>
+                    <button class="px-6 py-2 bg-indigo-600 rounded-full hover:bg-indigo-700 transition-transform hover:scale-105 neon-glow">Book Now</button>
+                </div>
+                <button @click="open = !open" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div x-show="open" class="md:hidden mt-4 space-y-4" x-collapse>
+                <a href="#hero" class="block py-2">Home</a>
+                <a href="#services" class="block py-2">Services</a>
+                <a href="#stylists" class="block py-2">Stylists</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="min-h-screen flex items-center pt-32">
+        <div class="container mx-auto px-6">
+            <div class="glass-effect p-12 rounded-[2.5rem] neon-glow max-w-5xl mx-auto">
+                <h1 class="text-6xl md:text-8xl font-bold mb-8 floating gradient-text">Reinvent Your Style</h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-12">Where precision engineering meets artistic vision in hair transformation</p>
+                <div class="flex gap-4">
+                    <button class="px-8 py-4 bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-transform hover:scale-105">Book Consultation</button>
+                    <button class="px-8 py-4 border border-indigo-500 rounded-xl hover:bg-indigo-500/10 transition-colors">AI Preview</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center">Signature Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-effect p-8 rounded-2xl hover:-translate-y-2 transition-all">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_49rdxysf.json" background="transparent" speed="1" style="width: 100px; height: 100px" loop autoplay></lottie-player>
+                    <h3 class="text-2xl font-bold my-4">Precision Cutting</h3>
+                    <p class="text-gray-400">Masterful structural design for perfect form and movement</p>
+                    <div class="mt-6 flex justify-between text-sm">
+                        <span>Duration:</span>
+                        <span>60-90 mins</span>
+                    </div>
+                </div>
+                <!-- Add more service cards here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="stylists" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="glass-effect p-12 rounded-3xl">
+                <h2 class="text-4xl font-bold mb-12">Master Stylists</h2>
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="h-96 bg-gray-800 rounded-2xl"></div>
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold">About Our Team</h3>
+                        <p class="text-gray-400">Combining decades of experience with cutting-edge techniques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Three.js Background
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('threejs-bg').appendChild(renderer.domElement);
+        
+        const geometry = new THREE.OctahedronGeometry(10, 2);
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x4f46e5,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+        const shape = new THREE.Mesh(geometry, material);
+        scene.add(shape);
+        camera.position.z = 25;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            shape.rotation.x += 0.01;
+            shape.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // p5.js Particles
+        const particles = new p5(p => {
+            let particles = [];
+            p.setup = () => {
+                p.createCanvas(window.innerWidth, window.innerHeight);
+                for(let i = 0; i < 150; i++) {
+                    particles.push({
+                        pos: p.createVector(p.random(p.width), p.random(p.height)),
+                        vel: p.createVector(p.random(-0.5, 0.5), p.random(-0.5, 0.5)),
+                        size: p.random(2, 5)
+                    });
+                }
+            };
+            p.draw = () => {
+                p.clear();
+                particles.forEach(part => {
+                    part.pos.add(part.vel);
+                    if(part.pos.x < 0) part.pos.x = p.width;
+                    if(part.pos.x > p.width) part.pos.x = 0;
+                    if(part.pos.y < 0) part.pos.y = p.height;
+                    if(part.pos.y > p.height) part.pos.y = 0;
+                    p.fill(79, 70, 229, 50);
+                    p.circle(part.pos.x, part.pos.y, part.size);
+                });
+            };
+        }, 'p5-particles');
+
+        // Scroll Animations
+        ScrollOut({ threshold: 0.25 });
+    </script>
+</body>
+</html>
